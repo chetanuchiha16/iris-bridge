@@ -32,11 +32,20 @@ pub fn get_image_paths(image_path: &str) -> Result<Vec<PathBuf>, Error> {
 /// * `Result<Vec<Vec<u8>>, Error>` - A vector where each element is a `Vec<u8>` containing
 ///   the raw encoded bytes of an image, or an IO error.
 pub fn get_encoded_image_bytes(paths: &[PathBuf]) -> Result<Vec<Vec<u8>>, Error> {
-    paths
-        .iter()
-        .map(|path| {
-            let byte = fs::read(path)?;
-            Ok(byte)
-        })
-        .collect()
+    paths.iter().map(|path| fs::read(path)).collect()
 }
+
+// pub fn get_encoded_image_bytes(paths: &[PathBuf]) -> Result<Vec<Vec<u8>>, Error> {
+//     paths
+//         .iter()
+//         .map(|path| {
+//             let byte = fs::read(path)?;
+//             Ok(byte)
+//         })
+//         .collect()
+// }
+
+// pub fn get_encoded_image_bytes(paths: &[PathBuf]) -> Result<Vec<Vec<u8>>, Error> {
+//     let x = paths.iter().map(|path| fs::read(path));
+//     x.collect()
+// }
